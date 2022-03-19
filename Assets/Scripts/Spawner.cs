@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -25,6 +24,18 @@ public class Spawner : MonoBehaviour
     {
         get { return _maxDisatnce; }
         set { _maxDisatnce = value; }
+    }
+
+    private void OnEnable()
+    {
+        UIManager.MenuClick += StopSpawning;
+        UIManager.StartClick += StartSpawning;
+    }
+
+    private void OnDisable()
+    {
+        UIManager.MenuClick -= StopSpawning;
+        UIManager.StartClick -= StartSpawning;
     }
 
     public void StopSpawning()
